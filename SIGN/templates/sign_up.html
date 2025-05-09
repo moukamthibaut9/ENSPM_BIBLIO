@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titre_page %} INSCRIPTION {% endblock %}
+
+{% block header_content %} 
+<div style="height: 100px;"></div>
+{% endblock %}
+
+{% block main_content %}
+    <div class="sign">
+        <div class="sign1">
+            <h4 class="mb-3">Enregistrez-vous  gratuitement et acceder à plus de possibilités !</h4>
+            <h5 class="mb-3">Veillez à bien remplir les champs, puis validez.</h4>
+        </div>
+        <div class="sign2">
+            <form action="" method="post" style="width: 70%; margin: 2% 5% 0% 0%;" id="submit_form">{% csrf_token %}
+                <label for="id_username"><h6>Entrez votre nom d'utilisateur</h6></label><br>
+                {{ registration_form.username }}
+                <label for="id_email"><h6>Entrez votre adresse e-mail</h6></label><br>
+                {{ registration_form.email }}
+                <label for="id_statut"><h6>Quelle est votre fonction?</h6></label><br>
+                {{ registration_form.statut }}
+                <label for="id_department"><h6>Sélectionnez un département</h6></label><br>
+                {{ registration_form.department }}
+                <label for="id_phone_number"><h6>Indiquez votre numéro de téléphone</h6></label><br>
+                {{ registration_form.phone_number }}
+                <label for="id_registration_number"><h6>Indiquez votre matricule</h6></label><br>
+                {{ registration_form.registration_number }}
+                <label for="id_level"><h6>Sélectionnez votre niveau</h6></label><br>
+                {{ registration_form.level }}
+                <label for="id_password"><h6>Entrez votre mot de passe</h6></label><br>
+                {{ registration_form.password }}
+                <label for="id_password_"><h6>Confirmez votre mot de passe</h6></label><br>
+                {{ registration_form.password_ }}
+                <button type="submit" style="color: blue;padding: 1%; margin: 3% 20% 0% 20%;border-radius: 10px;width: 60%;" id="submit_button">
+                    Valider
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script_content %}
+
+{% endblock %}

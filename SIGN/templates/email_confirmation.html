@@ -1,0 +1,12 @@
+<h2>Bonjour {{ username }},</h2>
+<p>Merci pour votre inscription sur la plateforme PIPO FEDERATION !</p>
+<p>
+    Veuillez <a href="http://{{ domain }}{% url 'email_validation' uidb64=uid token=token %}">cliquer ici</a> 
+    pour valider votre adresse e-mail et activer votre compte.
+</p>
+<p>
+  Cordialement, <br>
+    L'équipe de PIPO FEDERATION.  
+</p>
+
+

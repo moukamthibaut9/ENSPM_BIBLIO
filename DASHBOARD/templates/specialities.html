@@ -1,0 +1,110 @@
+
+{% extends '_base.html' %}
+{% load static %}
+{% load my_personalized_filters %}<!-- Chargement de mes filtres personalisés -->
+
+{% block title_content %} SOUS-CATEGORIES LIVRES {% endblock %}
+
+{% block main_content %}
+    {% if books %}
+        <div class="books_container">
+            {% for book in books %}
+                {% if book.is_valid %}
+                <div>
+                    <h1>{{ forloop.counter }}. </h1>
+                    <h1 class="doc_title">
+                        <a href="#container_overview"  
+                        onclick="overview(
+                            '{% url "plagiat_evaluation" book.pk %}',
+                            '{% url "pdf_download" book.speciality.pk book.pk %}',
+                            '{{ book.title|escapejs }}',
+                            '{{ book.theme|escapejs }}',
+                            '{{ book.author|escapejs }}',
+                            '{{ book.professional_framer|escapejs }}',
+                            '{{ book.academic_framer|escapejs }}',
+                            '{{ book.defense_date|date:"d F Y" }}',
+                            '{{ book.abstract|escapejs }}', 
+                            '{{ book.image.url }}'
+                        )">
+                            {{ book.title|upper }}
+                        </a>
+                    </h1>
+                    {% if user == book.submit_by and user.is_teacher and user.is_framer_teacher  %}
+                        <a href="{% url 'doc_update' book.pk %}" style="display: inline-block;margin: 5px;">
+                            <button style="background-color: orange;border-radius: 10px; padding: 5px;">
+                                Modifier
+                            </button>
+                        </a><br>
+                        <a href="{% url 'doc_delete' book.pk %}" style="display: inline-block;margin: 5px;">
+                            <button style="background-color: orangered;border-radius: 10px; padding: 5px;">
+                                Supprimer
+                            </button>
+                        </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div id="container_overview" style="display: none;">
+            <!-- Appercu pour  le livre sélectionné -->
+            <h2 id="doc_title" style="text-align: center; margin-top: 20px;"></h2>
+            <div  id="doc_overview">
+                <div id="doc_description">
+                    <h4><u>Informations sur ce memoire</u></h4>
+                    <ul>
+                        <li id="doc_theme"></li>
+                        <li id="doc_author"></li>
+                        <li id="doc_professional_framer"></li>
+                        <li id="doc_academic_framer"></li>
+                        <li id="doc_defense_date"></li>
+                    </ul>
+                    <h4><u>Résumé/Abstract</u></h4>
+                    <p id="doc_abstract"></p>
+                </div>
+                <div id="doc_image"></div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;color: blue;">
+                <a id="doc_url" style="display: inline-block; margin: 5px;">
+                    <button style="border-radius: 10px; padding: 5px;">Consulter ce mémoire ...</button>
+                </a>
+                {% if user.is_teacher and user.is_framer_teacher %}
+                    <a id="plagiat" href="" style="display: inline-block; margin: 5px;">
+                        <button style="border-radius: 10px; padding: 5px;">Evaluer le plagiat</button>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <div style="display: flex; align-items: center;justify-content: center;height: 300px;">
+            <h3>AUCUN MEMOIRE DE CETTE SPECIALITE POUR LE MOMENT</h3>
+        </div> 
+    {% endif %}
+{% endblock %}
+
+{% block script_content %}
+<script>
+    /*
+        Ce script permet l'affichage d'un certain nombre d'informations relatives a un
+        memoire avant visualisation complete par l'utilisateur si voulu
+    */
+    var container_overview = document.getElementById('container_overview')
+    function overview(doc_plagiat_url,doc_url,doc_title,doc_theme,doc_author,doc_professional_framer,
+    doc_academic_framer,doc_defense_date,doc_abstract,doc_image){
+        container_overview.style.display = "flex";
+        document.getElementById('doc_url').href = doc_url;
+        document.getElementById('doc_title').textContent = "Titre: " + doc_title;
+        document.getElementById('doc_theme').textContent = "Thème: " + doc_theme;
+        document.getElementById('doc_author').textContent = "Auteur: " + doc_author;
+        document.getElementById('doc_professional_framer').textContent = "Encadreur professionel: " + doc_professional_framer;
+        document.getElementById('doc_academic_framer').textContent = "Encadreur académique: " + doc_academic_framer;
+        document.getElementById('doc_defense_date').textContent = "Date de soutenance: " + doc_defense_date;
+        document.getElementById('doc_abstract').textContent = doc_abstract;
+        document.getElementById('doc_image').innerHTML = "<img src='" + 
+                                                        doc_image + 
+                                                        "' alt='Premiere de Couverture'/>";
+        document.getElementById('plagiat').href = doc_plagiat_url
+    }
+    
+</script>
+    
+{% endblock %}

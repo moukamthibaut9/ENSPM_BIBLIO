@@ -1,0 +1,35 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load my_personalized_filters %}<!-- Chargement de mes filtres personalisés -->
+
+{% block title_content %} DEPARTEMENTS LIVRES {% endblock %}
+
+{% block main_content %}
+    <p style="text-align: center;margin: 15px;font-size: 1.2em;font-weight: bolder;font-style: italic;">
+        Ici, vous avez access à tous les mémoires regroupés selon les départements et les spécialités, 
+        afin de vous offrir une meilleure navigation.
+    </p>
+    {% for dept in departments %}
+        <section id="{{dept.id}}" class="specialities_container">
+            <h2 style="margin: 50px 0px 50px 0px; color: #28a745;">
+                DEPARTEMENT DE {{ dept.name|upper }}
+            </h2>
+            <div class="specialities_images">
+                {% for speciality in specialities %}
+                    {% if speciality.department.name == dept.name %}
+                        <div>
+                            <h5 class="card-title" style="text-align: center;">
+                            <a href="{% url 'specialities' speciality.pk %}">{{ speciality.name|upper }}</a>
+                            </h5>
+                            <div class="card-body">
+                                <a href="{% url 'specialities' speciality.pk %}">
+                                    <img src="{{speciality.image.url}}" alt="{{speciality.name}}" style="height: 95%; width: 95%;">
+                                </a> 
+                            </div>         
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </section>
+    {% endfor %}
+{% endblock %}

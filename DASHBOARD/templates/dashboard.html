@@ -1,0 +1,41 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load my_personalized_filters %}<!-- Chargement de mes filtres personalisés -->
+
+{% block main_content %}
+<hr>
+<section class="departments_container" id="biblio">
+  <div class="departments_texts">
+    <h2 style="margin-bottom: 25px; color: #28a745;">
+      RETROUVEZ ICI TOUS LES MEMOIRES REGROUPES PAR DEPARTEMENT
+    </h2>
+    <h4 style="margin-bottom: 25px; color: #007bff;">
+      Cliquez sur le bouton scintillant pour ajouter un memoire. <br>
+      Cliquez sur le bouton <strong>Tout afficher...</strong> pour acceder aux memoires par spécialité.
+    </h4>
+    <a href="{% url 'doc_submit' %}" style="margin-bottom: 25px;">
+      <button class="doc_submit" title="Soumettre un mémoire">+</button>
+    </a>
+    <a href="{% url 'departments' %}">
+      <button style="border-radius: 10px;color: blue;font-weight: bolder;padding: 5px;">
+        Tout afficher ...
+      </button>
+    </a>
+  </div>
+  <div class="departments_images">
+    {% for dept in departments %}
+      {% if forloop.counter <= 9 %}
+        <div class="card-body">
+            <a href="{% url 'departments' %}#{{dept.id}}">
+              <img src="{{dept.image.url}}" alt="{{dept.name}}">
+            </a><br><span class="text_up">{{dept.name|upper}}</span>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<script lang="js">
+ 
+</script>
+{% endblock %}

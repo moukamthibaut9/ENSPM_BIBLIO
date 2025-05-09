@@ -1,0 +1,70 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load my_personalized_filters %}<!-- Chargement de mes filtres personalisés -->
+
+{% block title_content %} EVALUATION DU PLAGIAT {% endblock %}
+
+{% block main_content %}
+    <div style="display: flex;flex-direction: column;align-items: center;margin-top: 50px;"> 
+        <h3 style="text-align: center;">
+            Evaluation du taux de plagiat entre deux documents 
+        </h3>
+        <form style="width: 90%;" action="" method="post" enctype="multipart/form-data" id="submit_form">{% csrf_token %}
+            <label for="book_source"><h6>Faites un choix: </h6></label>
+            <select class="form-control" id="book_source" name="book_source" required>
+                <option value="online" selected>Choisir un livre sur la plateforme</option>
+                <option value="offline">Téléverser un livre local</option>
+            </select>
+            <label for="book_online"><h6>Sélectionnez un mémoire ici</h6></label>
+            <select class="form-control" id="book_online" name="book_online">
+                {% for book in books %}
+                <option value="{{ book.pk }}">
+                    {{ book.title|upper }} par <strong>{{ book.author|upper }}</strong>
+                </option>
+                {% endfor %}
+            </select>
+            <label for="book_offline"><h6>Choisissez un mémoire en local</h6></label>
+            <input class="form-control" type="file" id="book_offline" name="book_offline" accept="application/pdf" disabled>
+            <button type="submit" id="submit_button"
+            style="background-color:#28a745 ;color: white;padding: 1%;
+            margin: 15px 10% 15px 10%;border-radius: 10px;width: 80%;">
+                Evaluer
+            </button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block script_content %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const bookSource = document.getElementById('book_source');
+      const bookOnline = document.getElementById('book_online');
+      const bookOffline = document.getElementById('book_offline');
+  
+      function toggleBookFields() {
+        const value = bookSource.value.toLowerCase();  // ignore la casse
+  
+        if (value === 'online') {
+          bookOnline.disabled = false;
+          bookOnline.required = true;
+  
+          bookOffline.disabled = true;
+          bookOffline.required = false;
+        } 
+        else {
+          bookOnline.disabled = true;
+          bookOnline.required = false;
+  
+          bookOffline.disabled = false;
+          bookOffline.required = true;
+        }
+      }
+  
+      // Appeler une première fois au chargement de la page
+      toggleBookFields();
+  
+      // Réagir à un changement de sélection
+      bookSource.addEventListener('change', toggleBookFields);
+    });
+</script>  
+{% endblock %}

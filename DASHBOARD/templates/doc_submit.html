@@ -1,0 +1,30 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load my_personalized_filters %}<!-- Chargement de mes filtres personalisés -->
+
+{% block title_content %} SOUMISSION {% endblock %}
+
+{% block main_content %}
+    {% if user.is_teacher and user.is_framer_teacher %}
+        <div style="display: flex;flex-direction: column;align-items: center;margin-top: 50px;"> 
+            <h3 style="text-align: center;">
+                Veillez soumettre votre document
+            </h3>
+            <form action="" method="post" style="width: 90%;" enctype="multipart/form-data" id="submit_form">{% csrf_token %}
+                {{ form }}
+                <button type="submit" id="submit_button"
+                style="background-color:#28a745 ;color: white;padding: 1%;
+                margin: 15px 10% 15px 10%;border-radius: 10px;width: 80%;">
+                    Soumettre
+                </button>
+            </form>
+        </div>
+    {% else %}
+        <div style="display: flex; align-items: center;justify-content: center;height: 300px;">
+            <h3>
+                DESOLE! SEUL UN ENSEIGNANT ENCADREUR PEUT SOUMETTRE UN MEMOIRE SI TEL EST VOTRE CAS, 
+                CONTACTEZ UN ADMINISTRATEUR OU SOUMETTEZ UNE DEMANDE EN ACCEDANT A VOTRE COMPTE
+            </h3>
+        </div> 
+    {% endif %}
+{% endblock %}

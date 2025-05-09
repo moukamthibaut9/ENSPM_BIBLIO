@@ -1,0 +1,82 @@
+{% load static %}
+
+<nav id="navbar" class="navbar navbar-expand-lg" style="background-color: #007bff;color: white;">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+        data-mdb-collapse-init
+        class="navbar-toggler"
+        type="button"
+        data-mdb-target="#navbarCenteredExample"
+        aria-controls="navbarCenteredExample"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div
+        class="collapse navbar-collapse justify-content-center"
+        id="navbarCenteredExample"
+      >
+        <!-- Left links -->
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link sous_menu" href="{% url 'dashboard' %}#bilio">Bibliothèque</a>
+            <ul>
+                <li>
+                    <a href="{% url 'departments' %}">Voir tous les mémoires</a>
+                </li>
+                <li>
+                  <a href="{% url 'doc_submit' %}">Soumettre un mémoire</a>
+                </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link sous_menu" href="#!">Mon compte</a>
+            <ul>
+                <li>
+                  <a href="#!" style="color: black;">Bienvenu(e) {{ user|upper|slice:'10' }}</a>
+                </li>
+                {% if user.statut == 'EN' and not user.is_teacher %}
+                  <li>
+                    <a href="{% url 'statut_verification' %}">Verifier mon statut</a>
+                  </li>
+                {% endif %}
+                <li>
+                  <a href="{% url 'sign_out' %}">Deconnexion</a>
+                </li>
+            </ul>
+          </li>
+          <li>
+            <form action="{% url 'search' %}" class="input-group rounded">
+              <select required class="form-control" name="select">
+                <option value="titre" selected>Par titre</option>
+                <option value="theme" >Par thème</option>
+                <option value="auteur" >Par auteur</option>
+                <option value="date" >Par année</option>
+                <option value="option">Par option</option>
+              </select>
+              <input type="search" class="form-control rounded" placeholder="Rechercher ..." 
+              maxlength="10" name="search" required/>
+              <span class="input-group-text border-0" id="search-addon">
+              <i class="fas fa-search"></i>
+              </span>
+          </form>
+          </li>
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+     <div class="space"></div>
+  </nav>

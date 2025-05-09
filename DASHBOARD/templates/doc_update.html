@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load my_personalized_filters %}<!-- Chargement de mes filtres personalisés -->
+
+{% block title_content %} MODIFICATION {% endblock %}
+
+{% block main_content %}
+    <div style="display: flex;flex-direction: column;align-items: center;margin-top: 50px;"> 
+        <h3 style="text-align: center;">
+            Veillez modifier les informations que vous souhaitez, puis mettez à jour.
+        </h3>
+        <form action="" method="post" style="width: 90%;" enctype="multipart/form-data" id="submit_form">{% csrf_token %}
+            {{ form }}
+            <button type="submit" id="submit_button"
+            style="background-color:#28a745 ;color: white;padding: 1%;
+            margin: 15px 10% 15px 10%;border-radius: 10px;width: 80%;">
+                Mettre à jour
+            </button>
+        </form>
+    </div>
+{% endblock %}

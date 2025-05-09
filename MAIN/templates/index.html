@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header_content %} 
+<div class="p-2 text-center bg-image" 
+style="background-image: url('{% static 'img/img4.jpg' %}');height: 650px;">
+	<div class="mask">
+		<div class="d-flex justify-content-center align-items-center h-100">
+			<div class="text-white">
+				<span class="btn btn-outline-success btn-lg mb-3" style="font-size: 1.5em;cursor: none;">
+					PIPO FEDERATION
+				</span>
+				<h4 class="mb-9">
+					Seul, on va vite ! Ensemble, on va loin !
+				</h4>
+				{% if user.is_authenticated %}
+					<a href="{% url 'dashboard' %}">
+						<button class="get_started">ACCEDEZ A TOUTES LES FONCTIONNALITES !</button>
+					</a>
+				{% else %}
+					<a href="{% url 'sign_in' %}">
+						<button class="get_started">ACCEDEZ A TOUTES LES FONCTIONNALITES !</button>
+					</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block main_content %}
+<p style="text-align: justify;margin: 15px;font-size: 1.2em;font-weight: bolder;font-style: italic;">
+	A l'origine, les écoles polytechniques ont été créées pour répondre à un certain nombre de problématiques du 
+	pays dans divers domaines, mais aussi pour former un panel de personnes compétentes, capables de répondre aux 
+	exigences et aux besoins de l'industrie. De plus, l'idée de promouvoir la recherche dans le domaine de 
+	l'ingénierie, afin de découvrir et de développer de nouvelles technologies, constituait alors l'un des aspects 
+	les plus essentiels dans la création des écoles polytechniques. <br>
+	Cependant, après leur création, de nouveaux problèmes et réalités ont émergé, mettant en évidence certaines 
+	lacunes. Le retard accumulé par ces écoles est dû, en partie, à un manque de technologies capables de répondre 
+	réellement aux problématiques du pays, telles que : des routes qui ne durent pas, des réseaux de communication 
+	défaillants, l'absence d'infrastructures de pointe, et l'isolement des communautés polytechniques. <br>
+</p>
+<h2 style="text-align: center;color: #007bff;margin: 15px;">A PROPOS DE NOS OBJECTIFS</h2>
+<div class="our_aims">
+	<div>
+		<span style="font-size: 3em; color: #28a745;">1.</span>
+		<h3>Unir les écoles polytechniques du Cameroun</h3>
+		<p>
+			pour les rendre plus visibles et compétitives 
+			sur la scène internationale. Actuellement, les écoles polytechniques camerounaises manquent de 
+			reconnaissance à l'échelle mondiale, en raison de l'isolement de leurs initiatives. En unissant 
+			leurs forces, elles pourraient participer à des compétitions internationales, des projets de recherche 
+			de grande envergure et des partenariats académiques, renforçant ainsi la notoriété et l'influence du 
+			Cameroun sur le plan global.
+		</p>
+	</div>
+	<div>
+		<span style="font-size: 3em; color: #28a745;">2.</span>
+		<h3>Réponse aux besoins économiques et industriels du pays</h3>
+		<p>
+			le Cameroun, comme de nombreux autres pays africains, fait face à des défis de développement 
+			infrastructurel et technologique. Nous voulons mettre en place des projets innovants adaptés aux 
+			besoins spécifiques du pays. De plus, cette initiative favoriserait la création d'un marché 
+			de l'ingénierie polytechnique, où les diplômés pourraient trouver des opportunités d'emploi et de 
+			stage directement liées aux projets nationaux.
+		</p>
+	</div>
+	<div>
+		<span style="font-size: 3em; color: #28a745;">3.</span>
+		<h3>Mettre en avant de l'innovation et des technologies adaptées</h3>
+		<p>
+			l'union des écoles polytechniques permettra d'accélérer la mise en avant de technologies innovantes, 
+			notamment dans les secteurs du génie civil, de l'informatique et des infrastructures. Ces technologies 
+			pourront répondre aux besoins immédiats du pays, comme la construction de routes durables, le 
+			développement de réseaux de communication robustes, et la modernisation des infrastructures. Cela 
+			contribuera également à l'émergence d'un écosystème d'innovation, essentiel pour un développement durable
+		</p>
+	</div>
+	<div>
+		<span style="font-size: 3em; color: #28a745;">4.</span>
+		<h3>Partage de ressources et collaboration renforcée</h3>
+		<p>
+			la collaboration entre écoles polytechniques favoriserait l'échange de ressources académiques, de 
+			laboratoires et d'équipements, augmentant ainsi la qualité de l'enseignement et de la recherche. 
+			Ce partage permettra de maximiser les capacités de chaque institution, tout en développant une 
+			approche interdisciplinaire pour résoudre les problèmes complexes du pays. Cela engendrera une 
+			synergie académique qui profitera tant aux étudiants qu'aux enseignants.
+		</p>
+	</div>
+	<div>
+		<span style="font-size: 3em; color: #28a745;">5.</span>
+		<h3>Valorisation du rôle des polytechniciens</h3>
+		<p>
+			l'une des grandes difficultés actuelles est la dévalorisation de l'ingénieur polytechnicien. En 
+			créant une union, les polytechniciens pourront s'organiser, promouvoir leurs compétences et améliorer 
+			la reconnaissance de leur rôle dans la société et dans les secteurs industriels. Cela favorisera la 
+			revalorisation du statut des ingénieurs polytechniciens, en soulignant leur contribution essentielle 
+			à la modernisation du pays.
+		</p>
+	</div>
+</div>
+<h2 style="text-align: center;color: #007bff;">NOS PRINCIPALES ACTIVITES</h2>
+<div class="activity_presentation">
+	<div>
+		<h4 style="color: #28a745;">Hackathons</h4>
+		<p>
+			Il s'agit ici de compétitions que nous organisons entre les élèves ingénieurs des écoles polytechniques 
+			des différentes régions en vue de les pousser à travailler d'avantage, leur permettre de voir leurs 
+			limites et acquerrir plus d'experience.<br>
+			<a data-mdb-ripple-init class="btn btn-outline-success btn-lg" href="" 
+			role="button">En savoir plus ...</a>
+		</p>
+	</div>
+	<div>
+		<img src="{% static 'img/img1.jpg' %}" alt="Image 1">
+	</div>
+</div>
+<div class="activity_presentation">
+	<div>
+		<h4 style="color: #28a745;">Formation et coatching</h4>
+		<p>
+			Nous mettons en place des formateurs et des  formations dans différents domaines du numérique tels que: le dévéloppement 
+			logiciel, l'intelligence artificielle, la sécurité informatique, ... <br>
+			<a data-mdb-ripple-init class="btn btn-outline-success btn-lg" href="" 
+			role="button" style="margin: 5px;">En savoir plus ...</a>
+		</p>
+	</div>
+	<div>
+		<img src="{% static 'img/img3.jpg' %}" alt="Image 2">
+	</div>
+</div>
+<div class="activity_presentation">
+	<div>
+		<h4 style="color: #28a745;">Master Class et ateliers pratiques</h4>
+		<p>
+			Nous organisons régulièrement des conférences d'édification et de sensibilisation sur des notions liées 
+			à l'ingenieurie, ainsi que des ateliers pratiques. <br>
+			<a data-mdb-ripple-init class="btn btn-outline-success btn-lg" href=""
+			role="button">En savoir plus ...</a>
+		</p>
+	</div>
+	<div>
+		<img src="{% static 'img/img5.jpg' %}" alt="Image 3">
+	</div>
+</div>
+{% endblock %}

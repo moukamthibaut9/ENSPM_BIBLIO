@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load my_personalized_filters %}<!-- Chargement de mes filtres personalisés -->
+
+{% block title_content %} SUPPRESSION {% endblock %}
+
+{% block main_content %}
+<div style="display: flex;flex-direction: column;align-items: center;justify-content: center;height: 300px;"> 
+    <form action="" method="post" style="width: 90%;">{% csrf_token %}
+        <p style="margin: 15px;">Voulez-vous vraiment supprimer ce mémoire?</p>
+        <button type="submit" style="background-color:red ;color: white;padding: 10px;margin: 10px;border-radius: 10px;">
+            Oui, je veux supprimer
+        </button>
+        <a href="{% url 'specialities' book.speciality.pk %}" 
+        style="display:inline-block;background-color:green;color:white;padding:10px;margin:10px;border-radius:10px;">
+            Non, annuler l'action en cours
+        </a>
+    </form>
+</div>
+{% endblock %}

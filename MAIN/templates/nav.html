@@ -1,0 +1,68 @@
+{% load static %}
+
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-body-tertiary" style="position: fixed;z-index: 200; width: 100%;">
+    <!-- Container wrapper -->
+    <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand me-2" href="{% url 'home' %}">
+            <img
+            src="{% static 'img/logo.jpg' %}"
+            height="50"
+            alt="Logo"
+            loading="lazy"
+            style="margin-top: -1px;"
+            />
+        </a>
+    
+        <!-- Toggle button -->
+        <button
+            data-mdb-collapse-init
+            class="navbar-toggler"
+            type="button"
+            data-mdb-target="#navbarButtonsExample"
+            aria-controls="navbarButtonsExample"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        > <i class="fas fa-bars"></i>
+        </button>
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Acceuil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#footer">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'forum' %}">Forum</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <!-- Left links -->
+    
+            <div class="d-flex align-items-center">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'sign_out' %}">
+                        <button data-mdb-ripple-init type="button" class="btn btn-link px-3 me-2"> Deconnexion </button>
+                    </a>
+                {% else %}
+                    <a href="{% url 'sign_in' %}">
+                        <button data-mdb-ripple-init type="button" class="btn btn-link px-3 me-2"> Connexion </button>
+                    </a>
+                {% endif %}
+                
+                <a href="{% url 'sign_up' %}">
+                    <button data-mdb-ripple-init type="button" class="btn btn-primary me-3"> S'enregistrer </button>
+                </a>
+            </div>
+        </div>
+        <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+</nav>

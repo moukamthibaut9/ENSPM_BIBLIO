@@ -1,0 +1,65 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load my_personalized_filters %}<!-- Chargement de mes filtres personalisés -->
+
+{% block title_content %} VERIFICATION STATUT {% endblock %}
+
+{% block main_content %}
+    <div style="display: flex;flex-direction: column;align-items: center;margin-top: 50px;"> 
+        <h3 style="text-align: center;">
+            Veillez fournir les informations demandées ci-dessous, puis soumettez
+        </h3>
+        <form action="" method="post" style="width: 90%;" enctype="multipart/form-data" id="submit_form">{% csrf_token %}
+            <label for="identification_type">Selectionnez le format de votre pièce d'identité:</label>
+            <select class="form-control" id="identification_type" name="identification_type" required>
+                <option value="pdf_format" selected>Je veux fournir un PDF</option>
+                <option value="img_format">Je veux fournir des images</option>
+            </select>
+            {{ form }}
+            <button type="submit" id="submit_button"
+            style="background-color:#28a745 ;color: white;padding: 1%;
+            margin: 15px 10% 15px 10%;border-radius: 10px;width: 80%;">
+                Soumettre
+            </button>
+        </form>
+    </div>
+{% endblock %}
+{% block script_content %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const identificationType = document.getElementById('identification_type');
+      const pdfDoc = document.getElementById('id_pdf_doc');
+      const rectoImg = document.getElementById('id_recto_image');
+      const versoImg = document.getElementById('id_verso_image');
+  
+      function toggleBookFields() {
+        const value = identificationType.value.toLowerCase();  // ignore la casse
+  
+        if (value === 'pdf_format') {
+          pdfDoc.disabled = false;
+          pdfDoc.required = true;
+  
+          rectoImg.disabled = true;
+          rectoImg.required = false;
+          versoImg.disabled = true;
+          versoImg.required = false;
+        } 
+        else {
+          pdfDoc.disabled = true;
+          pdfDoc.required = false;
+  
+          rectoImg.disabled = false;
+          rectoImg.required = true;
+          versoImg.disabled = false;
+          versoImg.required = true;
+        }
+      }
+  
+      // Appeler une première fois au chargement de la page
+      toggleBookFields();
+  
+      // Réagir à un changement de sélection
+      identificationType.addEventListener('change', toggleBookFields);
+    });
+</script>  
+{% endblock %}

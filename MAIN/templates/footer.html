@@ -1,0 +1,49 @@
+{% load static %}
+
+<footer id="footer">
+  <div class="footer_contact">
+    <h3>Nous Contater<div class="faire_varier_la_barre"></div></h3>
+    <form action="{% url 'send_comment' %}" method="post" id="submit_form">{% csrf_token %}
+      <div>
+        <label for="objet">Objet de votre message: </label><br>
+        <input type="text" id="objet" name="msg_object" required>
+      </div>
+      <div>
+        <h5>Votre message ici</h5>
+        <textarea rows="5" name="msg_body" required></textarea>
+      </div>
+      <div>
+        <input type="submit" value="Envoyer" id="submit_button">
+      </div>
+    </form>
+  </div>
+  <div class="footer_footer">
+    <h1>PIPO FEDERATION</h1>
+    <p>
+      Seul, on va vite ! Ensemble, on va loin !
+    </p>
+    <p><a href="{% url 'policy' %}">Notre politique de confidentialité</a></p>
+    <hr style="border: 2px solid black;">
+    <div class="footer_social_network">
+      <div class="facebook_footer">
+        <a href="#"><img src="{% static 'img/facebook.png' %}" width="100%" alt="Facebook"></a>
+      </div>
+      <div class="youtube_footer">
+        <a href="https://www.youtube.com/@Thelion1.0" target="_blank"><img src="{% static 'img/youtube.png' %}" width="100%" alt="Youtube"></a>
+      </div>
+      <div class="whatsapp_footer">
+        <a href="https://wa.me/+237654181932" target="_blank"><img src="{% static 'img/whatsapp.png' %}" width="100%" alt="Whatsapp"></a>
+      </div>
+      <div class="twiter_footer">
+        <a href="" target="_blank"><img src="{% static 'img/twiter.png' %}" width="100%" alt="Twiter"></a>
+      </div>
+      <div class="instagram_footer">
+        <a href="" target="_blank"><img src="{% static 'img/instagram.png' %}" width="100%" alt="Instagram"></a>
+      </div>
+    </div>
+    <hr style="border: 2px solid black;">
+    <div class="copyright">
+      &copy; Copyright <strong><span>PIPO FEDERATION</span></strong>. All Rights Reserved
+    </div>
+  </div>
+</footer><!-- End Footer -->

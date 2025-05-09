@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header_content %} 
+<div class="p-5 text-center bg-image" style="background-image: url('{% static 'img/pol3.png' %}');height: 450px;">
+	<div class="mask">
+		<div class="d-flex justify-content-center align-items-center h-100">
+			<div style="color: black;">
+				<h1 class="mb-3">PIPO FEDERATION</h1>
+				<h4 class="mb-3">Prennez connaissance de notre politique de confidentiaité</h4>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block main_content %}
+    <div style="padding: 10px;text-align: justify;">
+        <h2 style="text-align: center;">INTRODUCTION GENERALE</h2>
+        <p>
+            Bienvenue chez PIPO FEDERATION! Nous nous engageons à protéger vos données personnelles et à les traiter 
+            avec la plus grande attention. Cette politique de confidentialité explique comment nous collectons, 
+            utilisons et protégeons vos informations personnelles lorsque vous utilisez nos services. Nous 
+            respectons les normes de protection des données personnelles en vigueur et nous ferons notre 
+            possible pour traiter vos données personnelles de manière responsabe et securisée en conformité avec 
+            les règlementations en vigueur. En utilisant nos services,vous acceptez cette politique de confidentiaité 
+            et consentez à la collecte  et à l'utilisation de vos données personnelles commme décrit dans ce document.
+        </p>
+
+        <h2 style="text-align: center;"> COLLECTE ET UTILISATION DES INFORMATIONS </h2> 
+        <p>
+            Lorsque vous utiisez notre site web, nous pouvons collecter des données personneles vous concernant, telles 
+            que votre nom, adresse e-mail et tout autre information additionnelle que vous choisissez de nous fournir. 
+            Nous utilisons ces informations pour gérer votre compte, traiter des paiements, contacter les utiisateurs, 
+            et personnaliser les services que nous offrons.
+            <div>
+                Nous pouvons également utiliser des outis automatiques de collecte des données pour collecter des 
+                informations non-personnelles sur votre utiisation de notre site web. Ces informations peuvent inclure 
+                vos interactions avec notre site web, votre adresse IP, votre navigateur internet  et autre information 
+                de type technique. 
+            </div>
+        </p>
+
+        <h2 style="text-align: center;">DIVULGATION DES INFORMATIONS</h2>
+        <p> Nous ne divulguerons pas vos informations personnelles à des tiers, excepté dans les cas suivants:
+            <ul>
+                <li>Si nous avons votre consentement. </li>
+                <li>
+                    Si nous sommes tenus de le faire pour nous conformer à une obligation légale ou si cela 
+                    est nécessaire pour protéger vos droits, votre sécurité, ou votre propriété.
+                </li>
+                <li>
+                    Si nos services sont effectués de façon indépendante par des tiers, qui doivent également 
+                    adhérer à cette politique de confidentialité.
+                </li>
+                <li>
+                    Si nous vendons des informations collectées à des fins commerciales pour lesquelles il n'y 
+                    a pas de lien direct avec les informations qui vous identifient.
+                </li>
+            
+            </ul> 
+        </p>
+        <h2 style="text-align: center;"> SECURITE DES INFOEMATIONS</h2>
+        <p>
+            Nous prenons des mesures de sécurité raisonnables pour protéger vos informations personnelles 
+            contre la perte, l'utilisation abusive, et l'accès non-autorisé, la divulgation, l'altération 
+            ou la destruction. Malgré ces précautions, aucune transmission de données sur Internet ou de 
+            stockage électronique ne peut être garantie à 100 % sécurisée. 
+        </p>
+
+        <h2 style="text-align: center;"> VOS CHOIX</h2>
+        <p>
+            Vous pouvez choisir de bloquer les cookies ou de recevoir des alertes lorsque les cookies sont 
+            envoyés à votre ordinateur ou appareil mobile. Pour cela, il vous suffit de rechercher les 
+            paramètres appropriés dans votre navigateur Internet.
+        </p>
+        <h2 style="text-align: center;"> MODIFICATION DE CETTE POLITIQUE</h2>
+        <P>
+            Nous nous réservons le droit de modifier cette politique de confidentialité de temps en temps, à 
+            notre discrétion, sans préavis. La version la plus à jour sera toujours accessible sur notre 
+            site web. 
+        </P>
+    </div>
+{% endblock %}
